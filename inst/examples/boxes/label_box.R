@@ -1,8 +1,11 @@
-label_box <- 'box(
+label_box <- 'boxPlus(
   title = "Closable box, with label", 
   closable = TRUE, 
-  width = 12,
-  label = boxLabel(1, status = "danger"),
+  width = NULL,
+  enable_label = TRUE,
+  label_text = 1,
+  label_status = "danger",
+  status = "warning", 
   solidHeader = FALSE, 
   collapsible = TRUE,
   p("Box Content")

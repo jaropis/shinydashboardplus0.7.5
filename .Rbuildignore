@@ -3,12 +3,8 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^cran-comments\.md$
-^pkgdown$
+^_pkgdown\.yml$
 ^docs$
 ^\.vscode$
 ^\.github$
 ^CODE_OF_CONDUCT\.md$
-^index\.md$
-^inst/vignettes-demos/.*./rsconnect$
-^tools$
-^srcjs$

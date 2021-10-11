@@ -18,8 +18,6 @@ If you want to quote text
 if (interactive()) {
  library(shiny)
  library(shinydashboard)
- library(shinydashboardPlus)
- 
  shinyApp(
   ui = dashboardPage(
     dashboardHeader(),
@@ -27,8 +25,7 @@ if (interactive()) {
     dashboardBody(
      box(
       title = "BlockQuote example",
-      blockQuote("I quote some text here!"),
-      blockQuote("I quote some text here!", side = "right")
+      blockQuote("I quote some text here!")
      )
     ),
     title = "blockQuote"

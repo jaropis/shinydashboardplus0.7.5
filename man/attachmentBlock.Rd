@@ -4,29 +4,24 @@
 \alias{attachmentBlock}
 \title{AdminLTE2 attachment container}
 \usage{
-attachmentBlock(..., image, title = NULL, href = NULL)
+attachmentBlock(..., src = NULL, title = NULL, titleUrl = NULL)
 }
 \arguments{
 \item{...}{any element.}
 
-\item{image}{url or path to the image.}
+\item{src}{url or path to the image.}
 
 \item{title}{attachment title.}
 
-\item{href}{external link.}
+\item{titleUrl}{external link.}
 }
 \description{
-\link{attachmentBlock} create an attachment container, nice to wrap articles...
-and insert in a \link{box}.
+Create an attachment container, nice to wrap articles...
 }
 \examples{
-
-# Box with attachmentBlock
 if (interactive()) {
  library(shiny)
  library(shinydashboard)
- library(shinydashboardPlus)
- 
  shinyApp(
   ui = dashboardPage(
     dashboardHeader(),
@@ -35,9 +30,9 @@ if (interactive()) {
      box(
       title = "Attachment example",
       attachmentBlock(
-       image = "https://adminlte.io/themes/AdminLTE/dist/img/photo1.png",
+       src = "https://adminlte.io/themes/AdminLTE/dist/img/photo1.png",
        title = "Test",
-       href = "https://google.com",
+       titleUrl = "https://google.com",
        "This is the content"
       )
      )

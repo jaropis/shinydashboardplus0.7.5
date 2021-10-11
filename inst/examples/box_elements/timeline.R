@@ -1,14 +1,13 @@
 timeline1 <- 'box(
   title = "Reversed Timeline: ideal to include in a box",
   status = "info",
-  width = 12,
+  width = NULL,
   timelineBlock(
-    width = 12,
-    timelineEnd(color = "red"),
+    timelineEnd(color = "danger"),
     timelineLabel(2018, color = "teal"),
     timelineItem(
       title = "Item 1",
-      icon = icon("gears"),
+      icon = "gears",
       color = "olive",
       time = "now",
       footer = "Here is the footer",
@@ -21,24 +20,23 @@ timeline1 <- 'box(
     timelineLabel(2015, color = "orange"),
     timelineItem(
       title = "Item 3",
-      icon = icon("paint-brush"),
+      icon = "paint-brush",
       color = "maroon",
-      timelineItemMedia(image = "https://placehold.it/150x100"),
-      timelineItemMedia(image = "https://placehold.it/150x100")
+      timelineItemMedia(src = "https://placehold.it/150x100"),
+      timelineItemMedia(src = "https://placehold.it/150x100")
     ),
-    timelineStart(color = "purple")
+    timelineStart(color = "gray")
   )
 )'
 
 
 timeline2 <- 'timelineBlock(
   reversed = FALSE,
-  width = 12,
-  timelineEnd(color = "red"),
+  timelineEnd(color = "danger"),
   timelineLabel(2018, color = "teal"),
   timelineItem(
     title = "Item 1",
-    icon = icon("gears"),
+    icon = "gears",
     color = "olive",
     time = "now",
     footer = "Here is the footer",
@@ -51,10 +49,10 @@ timeline2 <- 'timelineBlock(
   timelineLabel(2015, color = "orange"),
   timelineItem(
     title = "Item 3",
-    icon = icon("paint-brush"),
+    icon = "paint-brush",
     color = "maroon",
-    timelineItemMedia(image = "https://placehold.it/150x100"),
-    timelineItemMedia(image = "https://placehold.it/150x100")
+    timelineItemMedia(src = "https://placehold.it/150x100"),
+    timelineItemMedia(src = "https://placehold.it/150x100")
   ),
-  timelineStart(color = "purple")
+  timelineStart(color = "gray")
 )'

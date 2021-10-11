@@ -1,12 +1,13 @@
 ## Test environments
-* Local OS X install, R 3.6.1
+* local OS X install, R 3.6.1
 * `rhub::check_for_cran()`
-* Github actions
+* travis-ci
 * win-builder (devel and release)
 
 ## R CMD check results
-  - 0 error, 0 warnings, 0 Notes.
+There were no ERRORs or WARNINGs or NOTEs
 
-## Notes
-This release is a patch to fix an [issue](https://github.com/RinteRface/shinydashboardPlus/pull/151) preventing the release of 
-Shiny 1.7.0.
+The [error](https://www.r-project.org/nosvn/R.check/r-release-macos-x86_64/shinydashboardPlus-00check.html) should also be fixed
+
+## Reverse dependencies:
+using `devtools::revdep()` 

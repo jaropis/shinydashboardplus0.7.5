@@ -2,95 +2,53 @@
 % Please edit documentation in R/useful-items.R
 \name{accordion}
 \alias{accordion}
-\alias{accordionItem}
-\alias{updateAccordion}
 \title{AdminLTE2 accordion container}
 \usage{
-accordion(..., id = NULL, width = 12)
-
-accordionItem(..., title, status = NULL, collapsed = TRUE, solidHeader = TRUE)
-
-updateAccordion(id, selected, session = shiny::getDefaultReactiveDomain())
+accordion(..., inputId = NULL)
 }
 \arguments{
-\item{...}{slot for \link{accordionItem}.}
+\item{...}{slot for accordionItem.}
 
-\item{id}{Accordion to target.}
-
-\item{width}{The width of the accordion.}
-
-\item{title}{Optional title.}
-
-\item{status}{The status of the item This determines the item's background
-  color.  Valid statuses are defined as follows:
-\itemize{
-  \item \code{primary}: \Sexpr[results=rd, stage=render]{shinydashboardPlus:::rd_color_tag("#3c8dbc")}
-  \item \code{success}: \Sexpr[results=rd, stage=render]{shinydashboardPlus:::rd_color_tag("#00a65a")}
-  \item \code{info}: \Sexpr[results=rd, stage=render]{shinydashboardPlus:::rd_color_tag("#00c0ef")}
-  \item \code{warning}: \Sexpr[results=rd, stage=render]{shinydashboardPlus:::rd_color_tag("#f39c12")}
-  \item \code{danger}: \Sexpr[results=rd, stage=render]{shinydashboardPlus:::rd_color_tag("#f56954")}
-  \item \code{navy}: \Sexpr[results=rd, stage=render]{shinydashboardPlus:::rd_color_tag("#001F3F")}
-  \item \code{teal}: \Sexpr[results=rd, stage=render]{shinydashboardPlus:::rd_color_tag("#39CCCC")}
-  \item \code{purple}: \Sexpr[results=rd, stage=render]{shinydashboardPlus:::rd_color_tag("#605ca8")}
-  \item \code{orange}: \Sexpr[results=rd, stage=render]{shinydashboardPlus:::rd_color_tag("#ff851b")}
-  \item \code{maroon}: \Sexpr[results=rd, stage=render]{shinydashboardPlus:::rd_color_tag("#D81B60")}
-  \item \code{black}: \Sexpr[results=rd, stage=render]{shinydashboardPlus:::rd_color_tag("#111111")}
-}
-Only primary, success, info, warning and danger are compatible with solidHeader!}
-
-\item{collapsed}{If TRUE, start collapsed. This must be used with
-\code{collapsible=TRUE}.}
-
-\item{solidHeader}{Should the header be shown with a solid color background?}
-
-\item{selected}{Index of the newly selected \link{accordionItem}.}
-
-\item{session}{Shiny session object.}
+\item{inputId}{Unique accordion id.}
 }
 \description{
-Create an accordion container. Accordions are part of collapsible elements.
-
-\link{accordionItem} creates an accordion item to put inside an \link{accordion} container.
-
-\link{updateAccordion} toggles an \link{accordion} on the client.
+Create an accordion container
 }
 \examples{
 if (interactive()) {
  library(shiny)
  library(shinydashboard)
- library(shinydashboardPlus)
- 
  shinyApp(
   ui = dashboardPage(
     dashboardHeader(),
     dashboardSidebar(),
     dashboardBody(
       accordion(
-       id = "accordion1",
+       inputId = "accordion1",
         accordionItem(
           title = "Accordion 1 Item 1",
-          status = "danger",
+          color = "danger",
           collapsed = TRUE,
           "This is some text!"
         ),
         accordionItem(
           title = "Accordion 1 Item 2",
-          status = "warning",
+          color = "warning",
           collapsed = FALSE,
           "This is some text!"
         )
       ),
       accordion(
-       id = "accordion2",
+       inputId = "accordion2",
         accordionItem(
           title = "Accordion 2 Item 1",
-          status = "info",
+          color = "danger",
           collapsed = TRUE,
           "This is some text!"
         ),
         accordionItem(
           title = "Accordion 2 Item 2",
-          status = "success",
+          color = "warning",
           collapsed = FALSE,
           "This is some text!"
         )
@@ -102,49 +60,6 @@ if (interactive()) {
  )
 }
 
-
-# Update accordion
-if (interactive()) {
- library(shiny)
- library(shinydashboard)
- library(shinydashboardPlus)
- 
- shinyApp(
-  ui = dashboardPage(
-    dashboardHeader(),
-    dashboardSidebar(),
-    dashboardBody(
-      radioButtons("controller", "Controller", choices = c(1, 2)),
-      br(),
-      accordion(
-        id = "accordion1",
-        accordionItem(
-          title = "Accordion 1 Item 1",
-          status = "danger",
-          collapsed = TRUE,
-          "This is some text!"
-        ),
-        accordionItem(
-          title = "Accordion 1 Item 2",
-          status = "warning",
-          collapsed = TRUE,
-          "This is some text!"
-        )
-      )
-    ),
-    title = "Update Accordion"
-  ),
-  server = function(input, output, session) {
-    observeEvent(input$controller, {
-      updateAccordion(id = "accordion1", selected = input$controller)
-    })
-    observe(print(input$accordion1))
-    observeEvent(input$accordion1, {
-      showNotification(sprintf("You selected accordion N° \%s", input$accordion1), type = "message")
-    })
-  }
- )
-}
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

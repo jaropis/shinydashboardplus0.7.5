@@ -43,4 +43,4 @@ Below an example of application in medicine:
 
 ## Code of Conduct
   
-  Please note that the shinydashboardPlus project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.# shinydashboardplus0.7.5
+  Please note that the shinydashboardPlus project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.

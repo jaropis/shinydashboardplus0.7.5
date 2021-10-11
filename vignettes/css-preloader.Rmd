@@ -16,41 +16,35 @@ knitr::opts_chunk$set(
 )
 ```
 
-## How to set up a preloader?
+## How to set up a preloader
 
-Pass the argument `preloader` to the `dashboardPage()` function. It expects a nested list containing all parameters necessary to `waiter::waiterShowOnLoad`. Please have a look to the `{waiter}` 
-[documentation](https://waiter.john-coene.com/) for more details.
+Pass the argument `enable_preloader = TRUE` to the `dashboardPagePlus()` function.
+You can also change the loading duration (2s by default): `loading_duration = 5` for
+5 seconds.
 
-That's all!
+<video width="640" height="480" controls style="display: block; margin: 0 auto;">
+  <source src="figures/preloader.mp4" type="video/mp4">
+</video>
 
-```{r waiter-code, eval=FALSE}
+<br>
+
+```r
 library(shiny)
 library(shinydashboard)
 library(shinydashboardPlus)
-library(waiter)
+
 shinyApp(
-  ui = dashboardPage(
-    preloader = list(html = tagList(spin_1(), "Loading ..."), color = "#3c8dbc"),
-    header = dashboardHeader(),
-    sidebar = dashboardSidebar(),
-    body = dashboardBody(
-      actionButton("reload", "Reload")
+  ui = dashboardPagePlus(
+    enable_preloader = TRUE,
+    header = dashboardHeaderPlus(
+     enable_rightsidebar = TRUE,
+     rightSidebarIcon = "gears"
     ),
-    title = "Preloader"
+    sidebar = dashboardSidebar(),
+    body = dashboardBody(),
+    rightsidebar = rightSidebar(),
+    title = "DashboardPage"
   ),
-  server = function(input, output, session) {
-    # fake reload
-    observeEvent(input$reload, {
-      session$reload()
-    })
-  }
+  server = function(input, output) { }
 )
 ```
-
-<div class="marvel-device ipad black">
-<div class="camera"></div>
-<div class="screen">
-<iframe width="100%" src="https://dgranjon.shinyapps.io/shinydashboardPlus-preloader/" allowfullscreen="" frameborder="0" scrolling="yes" height="770px"></iframe>
-</div>
-<div class="home"></div>
-</div>

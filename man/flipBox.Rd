@@ -2,114 +2,46 @@
 % Please edit documentation in R/boxes.R
 \name{flipBox}
 \alias{flipBox}
-\alias{updateFlipBox}
-\title{A flipBox based on the W3C example}
+\title{AdminLTE2 flipping box}
 \usage{
-flipBox(id, front, back, trigger = c("click", "hover"), width = 6)
-
-updateFlipBox(id, session = shiny::getDefaultReactiveDomain())
+flipBox(
+  ...,
+  back_content,
+  id,
+  front_title = NULL,
+  back_title = NULL,
+  front_btn_text = "More",
+  back_btn_text = "Back to main",
+  header_img = NULL,
+  main_img = NULL,
+  width = 6
+)
 }
 \arguments{
-\item{id}{\link{flipBox} id.}
+\item{...}{front body content.}
 
-\item{front}{ui for the front of the flip box}
+\item{back_content}{back body content.}
 
-\item{back}{ui for the back of the flip box}
+\item{id}{Box id. Must be unique!}
 
-\item{trigger}{How to trigger rotate effect. Either click or hover. Default to click.}
+\item{front_title}{Box front title.}
 
-\item{width}{flipbox width. Between 1 and 12.}
+\item{back_title}{Box back title.}
 
-\item{session}{Shiny session object.}
+\item{front_btn_text}{Front button text.}
+
+\item{back_btn_text}{Back button text.}
+
+\item{header_img}{Header background image url or path.}
+
+\item{main_img}{Main image url or path (for instance profile image).}
+
+\item{width}{box width (between 1 and 12). 6 by default.}
 }
 \description{
-\link{flipBox} creates a box that flips from back to front and inversely
-
-\link{updateFlipBox} programmatically toggles a \link{flipBox} from the
-server.
-}
-\details{
-To access the state of the flipbox use the input alias \code{input$<id>}.
-For example, if your flipBox's id is myawesomeflipbox, you can access its state via
-\code{input$myawesomeflipbox} where TRUE corresponds to the front, FALSE to the back.
+Create a flipping box
 }
 \examples{
-if (interactive()) {
- library(shiny)
- library(shinydashboard)
- library(shinydashboardPlus)
- shinyApp(
-  ui = dashboardPage(
-    dashboardHeader(),
-    dashboardSidebar(),
-    dashboardBody(
-      fluidRow(
-        column(
-          width = 6,
-          uiOutput("active_side"), 
-          flipBox(
-            id = "myflipbox", 
-            trigger = "hover",
-            width = 12,
-            front = div(
-              class = "text-center",
-              h1("Flip on hover"),
-              img(
-                src = "https://image.flaticon.com/icons/svg/149/149076.svg",
-                height = "300px",
-                width = "100\%"
-              )
-            ),
-            back = div(
-              class = "text-center",
-              height = "300px",
-              width = "100\%",
-              h1("Flip on hover"),
-              p("More information....")
-            )
-          )
-        ),
-        column(
-          width = 6,
-          uiOutput("active_side_2"),
-          flipBox(
-            id = "myflipbox2",
-            width = 12,
-            front = div(
-              class = "text-center",
-              h1("Flip on click"),
-              img(
-                src = "https://image.flaticon.com/icons/svg/149/149076.svg",
-                height = "300px",
-                width = "100\%"
-              )
-            ),
-            back = div(
-              class = "text-center",
-              height = "300px",
-              width = "100\%",
-              h1("Flip on click"),
-              p("More information....")
-            )
-          )
-        )
-      )
-    )
-  ),
-  
-  server = function(input, output, session) {
-    output$active_side <- renderUI({
-      side <- if (input$myflipbox) "front" else "back"
-      dashboardBadge(side, color = "blue")
-    })
-    
-    output$active_side_2<- renderUI({
-      side <- if (input$myflipbox2) "front" else "back"
-      dashboardBadge(side, color = "blue")
-    })
-  }
- )
-}
 if (interactive()) {
  library(shiny)
  library(shinydashboard)
@@ -119,39 +51,179 @@ if (interactive()) {
      dashboardHeader(),
      dashboardSidebar(),
      dashboardBody(
-       actionButton("toggle", "Toggle flip box"),
-       uiOutput("active_side"), 
-       flipBox(
-         id = "myflipbox",
-         front = div(
-           class = "text-center",
-           img(
-             src = "https://image.flaticon.com/icons/svg/149/149076.svg",
-             height = "300px",
-             width = "100\%"
+       setShadow("card"),
+       fluidRow(
+         column(
+           width = 6,
+           align = "center",
+           flipBox(
+             id = 1,
+             main_img = "https://image.flaticon.com/icons/svg/149/149076.svg",
+             header_img = "https://image.flaticon.com/icons/svg/119/119595.svg",
+             front_title = "John Doe",
+             back_title = "About John",
+             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+             sed do eiusmod tempor incididunt ut labore et dolore magna 
+             aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
+             ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+             Duis aute irure dolor in reprehenderit in voluptate velit 
+             esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+             occaecat cupidatat non proident, sunt in culpa qui officia 
+             deserunt mollit anim id est laborum",
+             fluidRow(
+               dashboardLabel("Label 1", status = "info"),
+               dashboardLabel("Label 2", status = "success"),
+               dashboardLabel("Label 3", status = "warning"),
+               dashboardLabel("Label 4", status = "primary"),
+               dashboardLabel("Label 5", status = "danger")
+             ),
+             hr(),
+             fluidRow(
+               column(
+                 width = 6,
+                 align = "center",
+                 starBlock(grade = 5),
+                 starBlock(grade = 5, color = "olive"),
+                 starBlock(grade = 1, color = "maroon"),
+                 starBlock(grade = 3, color = "teal")
+               ),
+               column(
+                 width = 6,
+                 align = "center",
+                 appButton(
+                   url = "https://google.com",
+                   label = "Users",
+                   icon = "fa fa-users",
+                   enable_badge = TRUE,
+                   badgeColor = "purple",
+                   badgeLabel = 891
+                 ),
+                 appButton(
+                   label = "Edit",
+                   icon = "fa fa-edit",
+                   enable_badge = FALSE,
+                   badgeColor = NULL,
+                   badgeLabel = NULL
+                 )
+               )
+             ),
+             back_content = tagList(
+               column(
+                 width = 12,
+                 align = "center",
+                 sliderInput(
+                   "obs", 
+                   "Number of observations:",
+                   min = 0, 
+                   max = 1000, 
+                   value = 500
+                 )
+               ),
+               plotOutput("distPlot")
+             )
            )
-         ),
-         back = div(
-           class = "text-center",
-           height = "300px",
-           width = "100\%",
-           h1("Details...."),
-           p("More information....")
-         )
+       ),
+       column(
+         width = 6,
+         align = "center",
+         flipBox(
+           id = 2,
+           main_img = "https://image.flaticon.com/icons/svg/149/149073.svg",
+           header_img = "https://image.flaticon.com/icons/svg/119/119598.svg",
+           front_title = "Johanna Doe",
+           back_title = "About Johanna",
+           fluidRow(
+             column(
+               width = 6,
+               align = "center",
+               boxPad(
+                 color = "green",
+                 descriptionBlock(
+                   header = "8390",
+                   text = "VISITS",
+                   right_border = FALSE,
+                   margin_bottom = TRUE
+                 ),
+                 descriptionBlock(
+                   header = "30\%",
+                   text = "REFERRALS",
+                   right_border = FALSE,
+                   margin_bottom = TRUE
+                 ),
+                 descriptionBlock(
+                   header = "70\%",
+                   text = "ORGANIC",
+                   right_border = FALSE,
+                   margin_bottom = FALSE
+                 )
+               )
+             ),
+             column(
+               width = 6,
+               align = "center",
+               "Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+               sed do eiusmod tempor.",
+               br(),
+               verticalProgress(
+                 value = 10,
+                 striped = TRUE,
+                 active = TRUE
+               ),
+               verticalProgress(
+                 value = 50,
+                 active = TRUE,
+                 status = "warning",
+                 size = "xs"
+               ),
+               verticalProgress(
+                 value = 20,
+                 status = "danger",
+                 size = "sm",
+                 height = "60\%"
+               )
+             )
+           ),
+           back_content = tagList(
+             column(
+               width = 12,
+               align = "center",
+               radioButtons(
+                 "dist", 
+                 "Distribution type:",
+                 c("Normal" = "norm",
+                   "Uniform" = "unif",
+                   "Log-normal" = "lnorm",
+                   "Exponential" = "exp"
+                 )
+               )
+             ),
+             plotOutput("plot")
+           )
+       )
        )
      )
    ),
-   
-   server = function(input, output, session) {
-    output$active_side <- renderUI({
-     side <- if (input$myflipbox) "front" else "back"
-     dashboardBadge(side, color = "blue")
-    })
-    
-    observeEvent(input$toggle, {
-     updateFlipBox("myflipbox")
-    })
+   title = "flipBox"
+   ),
+   server = function(input, output) {
+     output$distPlot <- renderPlot({
+       hist(rnorm(input$obs))
+     })
+     output$plot <- renderPlot({
+       dist <- switch(input$dist,
+                      norm = rnorm,
+                      unif = runif,
+                      lnorm = rlnorm,
+                      exp = rexp,
+                      rnorm)
+       
+       hist(dist(500))
+     })
    }
- )
+  )
 }
+
+}
+\author{
+David Granjon, \email{dgranjon@ymail.com}
 }

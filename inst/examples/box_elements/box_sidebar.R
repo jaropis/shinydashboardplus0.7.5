@@ -1,14 +1,14 @@
-box_sidebar <- 'box(
+box_sidebar <- 'boxPlus(
   width = 12,
   title = "boxPlus with sidebar", 
   closable = TRUE, 
   status = "warning", 
   solidHeader = FALSE, 
   collapsible = TRUE,
-  sidebar = boxSidebar(
-    id = "boxsidebar",
-    width = 25,
-    startOpen = TRUE,
+  enable_sidebar = TRUE,
+  sidebar_width = 25,
+  sidebar_start_open = TRUE,
+  sidebar_content = tagList(
     checkboxInput("somevalue", "Some value", FALSE),
     verbatimTextOutput("value"),
     sliderInput(

@@ -4,12 +4,12 @@
 \alias{dashboardFooter}
 \title{Dashboard Footer}
 \usage{
-dashboardFooter(left = NULL, right = NULL)
+dashboardFooter(left_text = NULL, right_text = NULL)
 }
 \arguments{
-\item{left}{Left text.}
+\item{left_text}{Left text.}
 
-\item{right}{Right text.}
+\item{right_text}{Right text.}
 }
 \description{
 This creates a dashboard footer
@@ -21,13 +21,17 @@ library(shinydashboard)
 library(shinydashboardPlus)
 
 shinyApp(
-  ui = dashboardPage(
-    header = dashboardHeader(),
+  ui = dashboardPagePlus(
+    header = dashboardHeaderPlus(
+     enable_rightsidebar = TRUE,
+     rightSidebarIcon = "gears"
+    ),
     sidebar = dashboardSidebar(),
     body = dashboardBody(),
+    rightsidebar = rightSidebar(),
     footer = dashboardFooter(
-     left = "By Divad Nojnarg",
-     right = "Zurich, 2019"
+     left_text = "By Divad Nojnarg",
+     right_text = "Zurich, 2019"
     ),
     title = "DashboardPage"
   ),

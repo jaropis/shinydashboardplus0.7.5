@@ -2,33 +2,24 @@
 % Please edit documentation in R/useful-items.R
 \name{userPost}
 \alias{userPost}
-\alias{userPostTagItems}
-\alias{userPostTagItem}
-\alias{userPostMedia}
 \title{AdminLTE2 user post}
 \usage{
 userPost(
   ...,
   id = NULL,
-  image,
-  author,
+  src = NULL,
+  author = NULL,
   description = NULL,
   collapsible = TRUE,
   collapsed = FALSE
 )
-
-userPostTagItems(...)
-
-userPostTagItem(..., side = "left")
-
-userPostMedia(image, height = NULL, width = NULL)
 }
 \arguments{
-\item{...}{tool content such as label, button, ...}
+\item{...}{post content, slot for userPostToolItemList.}
 
 \item{id}{unique id of the post.}
 
-\item{image}{image path or url ...}
+\item{src}{profile image, if any.}
 
 \item{author}{post author.}
 
@@ -37,28 +28,14 @@ userPostMedia(image, height = NULL, width = NULL)
 \item{collapsible}{If TRUE, display a button in the upper right that allows the user to collapse the comment.}
 
 \item{collapsed}{Whether the comment is collapsed when the application starts, FALSE by default.}
-
-\item{side}{tool item orientation: "left" of "right", "left" by default.}
-
-\item{height}{media height in pixels.}
-
-\item{width}{media width in pixels.}
 }
 \description{
-\link{userPost} creates a user post. This content may be inserted in a \link{box}.
-
-\link{userPostTagItems} creates a container to host \link{userPostTagItem}.
-
-\link{userPostTagItem} creates a user post tool item
-
-\link{userPostMedia} creates a container to include an image in \link{userPost}.
+Create a user post
 }
 \examples{
 if (interactive()) {
  library(shiny)
  library(shinydashboard)
- library(shinydashboardPlus)
- 
  shinyApp(
   ui = dashboardPage(
     dashboardHeader(),
@@ -69,7 +46,7 @@ if (interactive()) {
       status = "primary",
       userPost(
        id = 1,
-       image = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
+       src = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
        author = "Jonathan Burke Jr.",
        description = "Shared publicly - 7:30 PM today",
        "Lorem ipsum represents a long-held tradition for designers, 
@@ -77,20 +54,20 @@ if (interactive()) {
        its demise, but others ignore the hate as they create awesome 
        tools to help create filler text for everyone from bacon 
        lovers to Charlie Sheen fans.",
-       collapsible = FALSE,
-       userPostTagItems(
-        userPostTagItem(dashboardLabel("item 1", status = "info")),
-        userPostTagItem(dashboardLabel("item 2", status = "danger"), side = "right")
+       userPostToolItemList(
+        userPostToolItem(dashboardLabel("item 1")),
+        userPostToolItem(dashboardLabel("item 2", status = "danger"), side = "right")
        )
       ),
       userPost(
        id = 2,
-       image = "https://adminlte.io/themes/AdminLTE/dist/img/user6-128x128.jpg",
+       src = "https://adminlte.io/themes/AdminLTE/dist/img/user6-128x128.jpg",
        author = "Adam Jones",
-       userPostMedia(image = "https://adminlte.io/themes/AdminLTE/dist/img/photo2.png"),
-       userPostTagItems(
-        userPostTagItem(dashboardLabel("item 1", status = "success")),
-        userPostTagItem(dashboardLabel("item 2", status = "danger"), side = "right")
+       description = "Shared publicly - 5 days ago",
+       userPostMedia(src = "https://adminlte.io/themes/AdminLTE/dist/img/photo2.png"),
+       userPostToolItemList(
+        userPostToolItem(dashboardLabel("item 1")),
+        userPostToolItem(dashboardLabel("item 2", status = "danger"), side = "right")
        )
       )
      )

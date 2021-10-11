@@ -164,10 +164,10 @@ extra_elements_tab <- tabItem(
       box(
         title = "Star example",
         width = NULL,
-        starBlock(5),
-        starBlock(5, color = "olive"),
-        starBlock(1, color = "maroon"),
-        starBlock(3, color = "teal")
+        starBlock(grade = 5),
+        starBlock(grade = 5, color = "olive"),
+        starBlock(grade = 1, color = "maroon"),
+        starBlock(grade = 3, color = "teal")
       ) 
     ),
     # ace editor
@@ -183,10 +183,10 @@ extra_elements_tab <- tabItem(
           style_text(
             'box(
             title = "Star example",
-            starBlock(5),
-            starBlock(5, color = "olive"),
-            starBlock(1, color = "maroon"),
-            starBlock(3, color = "teal")
+            starBlock(grade = 5),
+            starBlock(grade = 5, color = "olive"),
+            starBlock(grade = 1, color = "maroon"),
+            starBlock(grade = 3, color = "teal")
           )'
           ), 
           collapse = "\n"
@@ -216,9 +216,9 @@ extra_elements_tab <- tabItem(
         title = "Attachment example",
         width = NULL,
         attachmentBlock(
-          image = "https://adminlte.io/themes/AdminLTE/dist/img/photo1.png",
+          src = "https://adminlte.io/themes/AdminLTE/dist/img/photo1.png",
           title = "Test",
-          href = "http://google.com",
+          titleUrl = "http://google.com",
           "This is the content"
         )
       ) 
@@ -235,9 +235,9 @@ extra_elements_tab <- tabItem(
         value = paste(
           style_text(
             'attachmentBlock(
-            image = "https://adminlte.io/themes/AdminLTE/dist/img/photo1.png",
+            src = "https://adminlte.io/themes/AdminLTE/dist/img/photo1.png",
             title = "Test",
-            href = "http://google.com",
+            titleUrl = "http://google.com",
             "This is the content"
           )'
           ), 
@@ -247,9 +247,8 @@ extra_elements_tab <- tabItem(
     )
   ),
   
-  
   # ################
-  # demo progressBar()
+  # demo rightSidebarMenu()
   # ################
   
   br(),
@@ -257,12 +256,47 @@ extra_elements_tab <- tabItem(
   column(
     width = 12,
     align = "center",
-    h1("progressBar()")
+    h1("rightSidebarMenu()")
   ),
   
   br(),
   
   fluidRow(
+    # demo rightSidebarMenu
+    column(
+      width = 6,
+      eval(parse(text = rightsidebar_menu)) 
+    ),
+    # ace editor
+    column(
+      width = 6,
+      aceEditor(
+        theme = "dracula",
+        mode = "r",
+        height = "400px",
+        outputId = "rightSidebarMenu_code",
+        readOnly = TRUE,
+        value = paste(rightsidebar_menu, collapse = "\n")
+      ) 
+    )
+  ),
+  
+  # ################
+  # demo verticalProgress()
+  # ################
+  
+  br(),
+  
+  column(
+    width = 12,
+    align = "center",
+    h1("verticalProgress()")
+  ),
+  
+  br(),
+  
+  fluidRow(
+    # demo verticalProgress
     column(
       width = 6,
       eval(parse(text = vertical_progress)) 

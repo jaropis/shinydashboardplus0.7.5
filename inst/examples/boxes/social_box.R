@@ -1,24 +1,28 @@
 social_box <- 'socialBox(
+  title = "Social Box",
   width = 12,
-  title = userBlock(
-    image = "https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg",
-    title = "Social Box",
-    subtitle = "example-01.05.2018"
-  ),
+  subtitle = "example-01.05.2018",
+  src = "https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg",
   "Some text here!",
   attachmentBlock(
-    image = "https://adminlte.io/themes/AdminLTE/dist/img/photo1.png",
+    src = "https://adminlte.io/themes/AdminLTE/dist/img/photo1.png",
     title = "Test",
-    href = "https://google.com",
+    title_url = "https://google.com",
     "This is the content"
   ),
-  lapply(X = 1:10, FUN = function(i) {
+  comments = tagList(
     boxComment(
-      image = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
-      title = paste("Comment", i),
+      src = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
+      title = "Comment 1",
       date = "01.05.2018",
-      paste0("The ", i, "-th comment")
+      "The first comment"
+    ),
+    boxComment(
+      src = "https://adminlte.io/themes/AdminLTE/dist/img/user5-128x128.jpg",
+      title = "Comment 2",
+      date = "01.05.2018",
+      "The second comment"
     )
-  }),
+  ),
   footer = "The footer here!"
 )'

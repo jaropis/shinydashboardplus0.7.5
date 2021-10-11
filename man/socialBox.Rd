@@ -2,121 +2,85 @@
 % Please edit documentation in R/boxes.R
 \name{socialBox}
 \alias{socialBox}
-\alias{userBlock}
-\alias{boxComment}
 \title{AdminLTE2 social box}
 \usage{
 socialBox(
   ...,
+  src = NULL,
   title = NULL,
-  footer = NULL,
+  subtitle = NULL,
   width = 6,
   height = NULL,
   collapsible = TRUE,
-  collapsed = FALSE,
-  closable = FALSE,
-  boxToolSize = "sm",
-  headerBorder = TRUE,
-  label = NULL,
-  dropdownMenu = NULL,
-  sidebar = NULL,
-  id = NULL
+  closable = TRUE,
+  comments = NULL,
+  footer = NULL,
+  footer_padding = TRUE
 )
-
-userBlock(image, title, subtitle = NULL)
-
-boxComment(..., image, title = NULL, date = NULL)
 }
 \arguments{
-\item{...}{comment content.}
+\item{...}{body content. May include attachmentBlock for instance.}
 
-\item{title}{comment title.}
+\item{src}{header image, if any.}
 
-\item{footer}{Optional footer text.}
+\item{title}{box title.}
 
-\item{width}{The width of the box, using the Bootstrap grid system. This is
-used for row-based layouts. The overall width of a region is 12, so the
-default valueBox width of 4 occupies 1/3 of that width. For column-based
-layouts, use \code{NULL} for the width; the width is set by the column that
-contains the box.}
+\item{subtitle}{box subtitle.}
 
-\item{height}{The height of a box, in pixels or other CSS unit. By default
-the height scales automatically with the content.}
+\item{width}{box width (between 1 and 12).}
 
-\item{collapsible}{If TRUE, display a button in the upper right that allows
-the user to collapse the box.}
+\item{height}{box height.}
 
-\item{collapsed}{If TRUE, start collapsed. This must be used with
-\code{collapsible=TRUE}.}
+\item{collapsible}{If TRUE, display a button in the upper right that allows the user to collapse the box.}
 
 \item{closable}{If TRUE, display a button in the upper right that allows the user to close the box.}
 
-\item{boxToolSize}{Size of the toolbox: choose among "xs", "sm", "md", "lg".}
+\item{comments}{slot for boxComments.}
 
-\item{headerBorder}{Whether to display a border between the header and body.
-TRUE by default.}
+\item{footer}{box footer, if any.}
 
-\item{label}{Slot for \link{boxLabel}.}
-
-\item{dropdownMenu}{List of items in the boxtool dropdown menu. Use \link{boxDropdown}.}
-
-\item{sidebar}{Slot for \link{boxSidebar}.}
-
-\item{id}{If passed, the item will behave like an action button.}
-
-\item{image}{author image, if any.}
-
-\item{subtitle}{Any subtitle.}
-
-\item{date}{date of publication.}
+\item{footer_padding}{TRUE by default: whether the footer has margin or not.}
 }
 \description{
-\link{socialBox} creates a special box dedicated for social content.
-
-\link{userBlock} goes in the title of \link{socialBox}.
-
-\link{boxComment} has to be inserted in the comment slot of \link{socialBox}.
+Create social box
 }
 \examples{
 if (interactive()) {
  library(shiny)
  library(shinydashboard)
- library(shinydashboardPlus)
- 
  shinyApp(
-    ui = dashboardPage(
-      dashboardHeader(),
-      dashboardSidebar(),
-      dashboardBody(
-        socialBox(
-          title = userBlock(
-            image = "https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg",
-            title = "Social Box",
-            subtitle = "example-01.05.2018"
-          ),
-          "Some text here!",
-          attachmentBlock(
-            image = "https://adminlte.io/themes/AdminLTE/dist/img/photo1.png",
-            title = "Test",
-            href = "https://google.com",
-            "This is the content"
-          ),
-          lapply(X = 1:10, FUN = function(i) {
-            boxComment(
-              image = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
-              title = paste("Comment", i),
-              date = "01.05.2018",
-              paste0("The ", i, "-th comment")
-            )
-          }),
-          footer = "The footer here!"
-        )
+  ui = dashboardPage(
+    dashboardHeader(),
+    dashboardSidebar(),
+    dashboardBody(
+     socialBox(
+      title = "Social Box",
+      subtitle = "example-01.05.2018",
+      src = "https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg",
+      "Some text here!",
+      attachmentBlock(
+       src = "https://adminlte.io/themes/AdminLTE/dist/img/photo1.png",
+       title = "Test",
+       title_url = "https://google.com",
+       "This is the content"
       ),
-      controlbar = dashboardControlbar(),
-      title = "socialBox"
+      comments = tagList(
+       lapply(X = 1:10, FUN = function(i) {
+        boxComment(
+          src = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
+          title = paste("Comment", i),
+          date = "01.05.2018",
+          paste0("The ", i, "-th comment")
+        )
+       })
+      ),
+      footer = "The footer here!"
+     )
     ),
-    server = function(input, output) { }
-  )
+    title = "socialBox"
+  ),
+  server = function(input, output) { }
+ )
 }
 
 }

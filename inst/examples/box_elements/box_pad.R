@@ -1,7 +1,7 @@
 box_pad1 <- 'box(
   title = "Box with a green boxPad",
   status = "warning",
-  width = 12,
+  width = NULL,
   fluidRow(
     column(width = 6),
     column(
@@ -34,12 +34,12 @@ box_pad1 <- 'box(
 box_pad2 <- 'box(
   title = "Box with boxPad containing inputs",
   status = "warning",
-  width = 12,
+  width = NULL,
   fluidRow(
     column(
       width = 6,
       boxPad(
-        color = "lime",
+        color = "gray",
         sliderInput(
           "obs2", 
           "Number of observations:",

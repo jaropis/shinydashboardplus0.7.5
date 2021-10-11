@@ -1,33 +1,33 @@
 accordion <- 'box(
   title = "Accordion Demo",
-  width = 12,
+  width = NULL,
   accordion(
-    id = "accordion1",
+    inputId = "accordion1",
     accordionItem(
       title = "Accordion 1 Item 1",
-      status = "success",
+      color = "success",
       collapsed = TRUE,
       "This is some text!"
     ),
     accordionItem(
       title = "Accordion 1 Item 2",
-      status = "success",
+      color = "success",
       collapsed = FALSE,
       "This is some text!"
     )
   ),
   br(),
   accordion(
-    id = "accordion2",
+    inputId = "accordion2",
     accordionItem(
       title = "Accordion 2 Item 1",
-      status = "danger",
+      color = "danger",
       collapsed = FALSE,
       "This is some text!"
     ),
     accordionItem(
       title = "Accordion 2 Item 2",
-      status = "danger",
+      color = "danger",
       collapsed = TRUE,
       "This is some text!"
     )

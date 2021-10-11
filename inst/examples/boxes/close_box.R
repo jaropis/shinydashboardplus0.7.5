@@ -1,15 +1,17 @@
-close_box <- 'box(
+close_box <- 'boxPlus(
   title = "Closable Box with dropdown", 
-  closable = TRUE,
-  width = 12,
+  closable = TRUE, 
+  width = NULL,
   status = "warning", 
   solidHeader = FALSE, 
   collapsible = TRUE,
-  dropdownMenu = boxDropdown(
-    boxDropdownItem("Link to google", href = "https://www.google.com"),
-    boxDropdownItem( "item 2"),
+  enable_dropdown = TRUE,
+  dropdown_icon = "wrench",
+  dropdown_menu = dropdownItemList(
+    dropdownItem(url = "https://www.google.com", name = "Link to google"),
+    dropdownItem(url = "#", name = "item 2"),
     dropdownDivider(),
-    boxDropdownItem("item 3")
+    dropdownItem(url = "#", name = "item 3")
   ),
   p("Box Content")
 )'

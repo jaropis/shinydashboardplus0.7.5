@@ -2,8 +2,8 @@
 #'
 #' This creates a dashboard footer 
 #' 
-#' @param left Left text.
-#' @param right Right text.
+#' @param left_text Left text.
+#' @param right_text Right text.
 #' @examples
 #' if (interactive()) {
 #' library(shiny)
@@ -11,13 +11,17 @@
 #' library(shinydashboardPlus)
 #' 
 #' shinyApp(
-#'   ui = dashboardPage(
-#'     header = dashboardHeader(),
+#'   ui = dashboardPagePlus(
+#'     header = dashboardHeaderPlus(
+#'      enable_rightsidebar = TRUE,
+#'      rightSidebarIcon = "gears"
+#'     ),
 #'     sidebar = dashboardSidebar(),
 #'     body = dashboardBody(),
+#'     rightsidebar = rightSidebar(),
 #'     footer = dashboardFooter(
-#'      left = "By Divad Nojnarg",
-#'      right = "Zurich, 2019"
+#'      left_text = "By Divad Nojnarg",
+#'      right_text = "Zurich, 2019"
 #'     ),
 #'     title = "DashboardPage"
 #'   ),
@@ -25,10 +29,10 @@
 #' )
 #' }
 #' @export
-dashboardFooter <- function(left = NULL, right = NULL) {
+dashboardFooter <- function(left_text = NULL, right_text = NULL) {
   htmltools::tags$footer(
     class = "main-footer",
-    shiny::tags$div(class = "pull-right hidden-xs", right),
-    left
+    shiny::tags$div(class = "pull-right hidden-xs", right_text),
+    left_text
   )
 }

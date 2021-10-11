@@ -1,21 +1,21 @@
 vertical_progress <- 'box(
-  title = "progress",
-  width = 12,
-  shinydashboardPlus::progressBar(
+  title = "verticalProgress",
+  width = NULL,
+  verticalProgress(
     value = 10,
     striped = TRUE,
-    animated = TRUE
+    active = TRUE
   ),
-  shinydashboardPlus::progressBar(
+  verticalProgress(
     value = 50,
-    animated = TRUE,
+    active = TRUE,
     status = "warning",
     size = "xs"
   ),
-  shinydashboardPlus::progressBar(
+  verticalProgress(
     value = 20,
     status = "danger",
     size = "sm",
-    vertical = TRUE
+    height = "60%"
   )
 )'
